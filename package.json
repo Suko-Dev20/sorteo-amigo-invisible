@@ -1,0 +1,24 @@
+{
+  "name": "sorteo-amigo-invisible",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web navideña de sorteos de Amigo Invisible con envío por WhatsApp y MySQL local (XAMPP/phpMyAdmin)",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "db:init": "npm run db:init --prefix backend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently -n API,WEB -c green,cyan \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "test": "npm test --prefix backend",
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "cf:d1:init:local": "npx wrangler d1 execute amigo-invisible-db --local --file=db/d1-schema.sql",
+    "cf:d1:init:remote": "npx wrangler d1 execute amigo-invisible-db --remote --file=db/d1-schema.sql",
+    "cf:dev": "npm run build --prefix frontend && npx wrangler pages dev frontend/dist --compatibility-date=2026-01-01",
+    "cf:deploy": "npm run build --prefix frontend && npx wrangler pages deploy frontend/dist --project-name=amigo-invisible-nocturno"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261124.1",
+    "concurrently": "^9.1.2",
+    "wrangler": "^4.168.0"
+  }
+}

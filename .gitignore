@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+backend/.env
+backend/whatsapp-auth/
+.wrangler/
+*.log
+.DS_Store
+*.tsbuildinfo

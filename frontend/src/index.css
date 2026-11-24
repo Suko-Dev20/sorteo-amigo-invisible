@@ -1,0 +1,428 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(102, 76, 158, 0.28) 0%, transparent 65%),
+      radial-gradient(circle at 85% 15%, rgba(243, 232, 200, 0.08) 0%, transparent 32%),
+      linear-gradient(180deg, #0b0b16 0%, #111022 50%, #080810 100%);
+    color: #f0e8d8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+.font-burton {
+  font-family: 'Henny Penny', cursive;
+}
+
+.font-gothic {
+  font-family: 'Cinzel', serif;
+}
+
+/* Rayas icónicas estilo Jack Skellington */
+.burton-stripes {
+  background-image: repeating-linear-gradient(
+    -55deg,
+    rgba(242, 234, 215, 0.07) 0px,
+    rgba(242, 234, 215, 0.07) 6px,
+    transparent 6px,
+    transparent 16px
+  );
+}
+
+.burton-ribbon {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #141321 0px,
+    #141321 8px,
+    #f2ead7 8px,
+    #f2ead7 16px
+  );
+}
+
+/* Tarjeta nocturna con borde cosido */
+.burton-card {
+  background: linear-gradient(180deg, rgba(24, 22, 40, 0.92) 0%, rgba(14, 13, 25, 0.96) 100%);
+  border: 1px solid rgba(242, 234, 215, 0.16);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(242, 234, 215, 0.09);
+}
+
+.burton-stitch {
+  border: 1.5px dashed rgba(242, 234, 215, 0.26);
+}
+
+/* Copos nocturnos */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  85% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(105vh) translateX(30px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.snowflake {
+  position: fixed;
+  top: -10vh;
+  color: rgba(242, 234, 215, 0.55);
+  pointer-events: none;
+  z-index: 4;
+  animation-name: snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Temblor encantado de la caja de regalo */
+@keyframes burtonTremble {
+  0%, 100% {
+    transform: rotate(-1.5deg) translateY(0px);
+  }
+  20% {
+    transform: rotate(2.5deg) translateY(-4px);
+  }
+  40% {
+    transform: rotate(-3deg) translateY(-2px);
+  }
+  60% {
+    transform: rotate(2deg) translateY(-5px);
+  }
+  80% {
+    transform: rotate(-1deg) translateY(-1px);
+  }
+}
+
+.animate-burton-gift {
+  animation: burtonTremble 3.2s ease-in-out infinite;
+}
+
+/* Revelado teatral */
+@keyframes revealPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.84) rotate(-2deg) translateY(18px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.02) rotate(0.5deg) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: revealPop 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes moonPulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+.animate-moon {
+  animation: moonPulse 6s ease-in-out infinite;
+}
+
+/* ============================================================
+   Animación por fases: Desatar el lazo + Abrir la caja Burton
+   ============================================================ */
+@keyframes untieLeftLoop {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  35% {
+    transform: translate(-18px, -10px) rotate(-22deg) scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-75px, 28px) rotate(-55deg) scale(0.75);
+    opacity: 0;
+  }
+}
+
+@keyframes untieRightLoop {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  35% {
+    transform: translate(18px, -10px) rotate(22deg) scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(75px, 28px) rotate(55deg) scale(0.75);
+    opacity: 0;
+  }
+}
+
+@keyframes sealPopOff {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  45% {
+    transform: translateY(-20px) scale(1.25) rotate(18deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-48px) scale(0.4) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes ribbonSlideOff {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(4px) scaleX(1.06);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(42px) scaleX(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes lidFlyOpen {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-4px, -12px) rotate(-5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-28px, -74px) rotate(-26deg);
+    opacity: 0;
+  }
+}
+
+@keyframes magicLightBurst {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  45% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0.9;
+  }
+}
+
+.ribbon-left-untie {
+  transform-box: fill-box;
+  transform-origin: right center;
+  animation: untieLeftLoop 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ribbon-right-untie {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: untieRightLoop 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.seal-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sealPopOff 0.55s ease-out forwards;
+}
+
+.ribbon-band-untie {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ribbonSlideOff 0.55s 0.15s ease-in forwards;
+}
+
+.lid-fly-open {
+  transform-box: fill-box;
+  transform-origin: left bottom;
+  animation: lidFlyOpen 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.magic-glow-burst {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: magicLightBurst 0.75s ease-out forwards;
+}
+
+/* ============================================================
+   Caja de Regalo 3D Esculpida + Inmersión Fluida (Tim Burton)
+   ============================================================ */
+.burton-3d-viewport {
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+}
+
+.burton-3d-scene {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.burton-3d-face {
+  position: absolute;
+  backface-visibility: visible;
+}
+
+/* Raso a rayas estilo Tim Burton con brillo sedoso */
+.burton-satin-ribbon {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(0, 0, 0, 0.24) 100%),
+    repeating-linear-gradient(
+      90deg,
+      #141122 0px,
+      #141122 7px,
+      #f2ead7 7px,
+      #f2ead7 14px
+    );
+}
+
+.burton-satin-ribbon-h {
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.22) 0%, rgba(255, 255, 255, 0.14) 50%, rgba(0, 0, 0, 0.22) 100%),
+    repeating-linear-gradient(
+      0deg,
+      #141122 0px,
+      #141122 7px,
+      #f2ead7 7px,
+      #f2ead7 14px
+    );
+}
+
+/* Inmersión cinematográfica 60fps dentro de la caja abierta */
+@keyframes diveIntoGiftSmooth {
+  0% {
+    transform: rotateX(-20deg) rotateY(0deg) translateY(0px) translateZ(0px) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: rotateX(-38deg) rotateY(0deg) translateY(16px) translateZ(75px) scale(1.16);
+    opacity: 1;
+  }
+  65% {
+    transform: rotateX(-64deg) rotateY(0deg) translateY(60px) translateZ(360px) scale(2.65);
+    opacity: 1;
+  }
+  92% {
+    transform: rotateX(-76deg) rotateY(0deg) translateY(96px) translateZ(650px) scale(4.8);
+    opacity: 0.45;
+  }
+  100% {
+    transform: rotateX(-80deg) rotateY(0deg) translateY(110px) translateZ(760px) scale(5.6);
+    opacity: 0;
+  }
+}
+
+.burton-3d-dive {
+  animation: diveIntoGiftSmooth 1.45s cubic-bezier(0.38, 0.02, 0.18, 1) forwards;
+}
+
+/* Partículas estelares volando hacia ti al meterte dentro del regalo */
+@keyframes starWarp {
+  0% {
+    transform: translate(-50%, -50%) scale(0.15);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(2.4);
+    opacity: 0;
+  }
+}
+
+.burton-warp-star {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  animation: starWarp 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Destello cálido sutil al atravesar el interior del regalo */
+@keyframes portalFlash {
+  0% {
+    opacity: 0;
+  }
+  52% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.88;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.burton-portal-flash {
+  animation: portalFlash 1.45s ease-in-out forwards;
+}
+
+/* Partículas mágicas subiendo del interior de la caja abierta */
+@keyframes riseSparkle {
+  0% {
+    transform: translateY(12px) scale(0.4);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-76px) scale(1.25);
+    opacity: 0;
+  }
+}
+
+.burton-rise-sparkle {
+  animation: riseSparkle 1.3s ease-out infinite;
+}
+
+/* Entrada en profundidad 3D de la tarjeta interior */
+@keyframes emergeFromDepth {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateZ(-220px) scale(0.72) rotateX(12deg);
+  }
+  70% {
+    opacity: 1;
+    transform: perspective(1000px) translateZ(14px) scale(1.015) rotateX(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translateZ(0px) scale(1) rotateX(0deg);
+  }
+}
+
+.animate-emerge-3d {
+  animation: emergeFromDepth 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+

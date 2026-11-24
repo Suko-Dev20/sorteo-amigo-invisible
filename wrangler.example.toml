@@ -1,0 +1,11 @@
+# Opcional: solo renombra este archivo a wrangler.toml si despliegas desde consola con `npx wrangler pages deploy`
+# Si despliegas desde GitHub -> Cloudflare Pages Dashboard, configura el binding D1 (DB) directamente en el panel web de Cloudflare.
+
+name = "sorteo-amigo-invisible"
+compatibility_date = "2026-01-01"
+pages_build_output_dir = "frontend/dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "amigo-invisible-db"
+database_id = "PEGA_AQUI_TU_DATABASE_ID_DE_D1"
